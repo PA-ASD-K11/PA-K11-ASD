@@ -3,7 +3,7 @@ import pwinput
 import mysql.connector
 
 class Barang:
-    def __init__(self, id_barang, merk_barang, nama_barang, harga):
+    def _init_(self, id_barang, merk_barang, nama_barang, harga):
         self.id_barang = id_barang
         self.merk_barang = merk_barang
         self.nama_barang = nama_barang
@@ -11,7 +11,7 @@ class Barang:
         self.next = None
 
 class LinkedList:
-    def __init__(self):
+    def _init_(self):
         self.head = None
 
     def tambah_barang(self, id_barang, merk_barang, nama_barang, harga):
@@ -78,7 +78,7 @@ class LinkedList:
 
 data = LinkedList()
 
-def  menu():
+def  menu_admin():
     while True:
         print("""   
        
@@ -88,8 +88,8 @@ def  menu():
          3.UPDATE BARANG      
          4.CARI BARANG         
          5.HAPUS BARANG        
-         6.KELUAR DARI ADMIN   
-         7.KELUAR DARI PROGRAM 
+         6.KELUAR 
+
        
         """)
 
@@ -145,6 +145,11 @@ def  menu():
             else:
                 print(f"data barang dengan id barang {id_barang} tidak ditemukan")
 
+        elif pilih == "6":
+            raise SystemExit
+        else:
+            print("masukan yang benar")
+
 
 
 
@@ -174,7 +179,7 @@ def register_user():
 
     # Print success message
     print("User registration successful!")
-    menu_login()
+    menu_login_user()
 
 # Call the function to register a user
     register_user()
@@ -219,7 +224,7 @@ def admin_login():
     # Jika ditemukan admin dengan username dan password yang sesuai
     if admin:
         print("Login berhasil. Selamat datang, {}!".format(admin[1]))
-        menu()
+        menu_admin()
     else:
         print("Login gagal. Silakan coba lagi.")
 
@@ -234,7 +239,6 @@ def menu_login_user():
         print("1. registrasi user")
         print("2. Login user")
         print("3. Login admin")
-        print("4. Keluar")
 
         choice = input("Masukkan pilihan: ")
 
@@ -244,18 +248,6 @@ def menu_login_user():
             user_login()
         elif choice == "3":
             admin_login()
-        elif choice == "4":
-            break
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
 menu_login_user()
-
-def menu_login_admin():
-    while True:
-        print("selamat datang di login admin.")
-        print("pilih opsi:")
-        print("1. Login admin")
-        print("2. keluar")
-
-        x = input ("masukan pilihan :")
-        
