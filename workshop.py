@@ -45,7 +45,7 @@ class LinkedList:
             barang.harga = harga
             print("Data barang berhasil diupdate!")
         else:
-            print("Barang dengan ID barang tersebut tidak ditemukan")
+            print("Barang dengan ID barang tersebut tidak ditemukan.")
 
     def cari_barang(self, id_barang):
         current = self.head
@@ -60,18 +60,18 @@ class LinkedList:
         if current and current.id_barang == id_barang:
             self.head = current.next
             current = None
-            print("Data barang berhasil dihapus")
+            print("Data barang berhasil dihapus.")
             return
         prev = None
         while current and current.id_barang != id_barang:
             prev = current
             current = current.next
         if current is None:
-            print("Barang dengan ID barang tersebut tidak ditemukan")
+            print("Barang dengan ID barang tersebut tidak ditemukan.")
             return
         prev.next = current.next
         current = None
-        print("Data barang berhasil dihapus!")
+        print("Data barang berhasil dihapus.")
 
     
 
@@ -81,25 +81,24 @@ data = LinkedList()
 def  menu_admin():
     while True:
         print("""   
-       
-              work shop online               
-         1.TAMBAH BARANG       
-         2.TAMPILAN BARANG     
-         3.UPDATE BARANG      
-         4.CARI BARANG         
-         5.HAPUS BARANG        
-         6.KELUAR 
 
-       
+        Online Workshop             
+        1.TAMBAH BARANG       
+        2.TAMPILAN BARANG     
+        3.UPDATE BARANG      
+        4.CARI BARANG         
+        5.HAPUS BARANG        
+        6.KELUAR 
+
         """)
 
-        pilih = input("masukan pilihan anda :")
+        pilih = input("Masukkan pilihan anda :")
 
         if pilih == "1":
-            id_barang   = input("masukan id barang    : ")
-            merk_barang = input("masukan merek barang : ")
-            nama_barang = input("masukan nama barang  : ")
-            harga       = input("masukan harga barang : ")
+            id_barang   = input("Masukkan id barang    : ")
+            merk_barang = input("Masukkan merek barang : ")
+            nama_barang = input("Masukkan nama barang  : ")
+            harga       = input("Masukkan harga barang : ")
             data.tambah_barang(id_barang, merk_barang, nama_barang, harga)
             print("data barang berhasil ditambahkan!")
 
@@ -109,13 +108,13 @@ def  menu_admin():
 
         elif pilih == "3":
             data.tampilan_barang()
-            id_barang = input("masukan ID barang yang anda ingin update :")
+            id_barang = input("Masukkan ID barang yang anda ingin update :")
             barang = data.cari_barang(id_barang)
             if barang:
-                id_baru     = input("masukan ID barang baru    :")
-                merk_baru   = input("masukan merek barang baru :")
-                nama_baru   = input("masukan nama barang baru  :")
-                harga_baru  = input("masukan harga baru        :")
+                id_baru     = input("Masukkan ID barang baru    :")
+                merk_baru   = input("Masukkan merek barang baru :")
+                nama_baru   = input("Masukkan nama barang baru  :")
+                harga_baru  = input("Masukkan harga baru        :")
                 barang.id_barang   = id_baru
                 barang.merk_barang = merk_baru
                 barang.nama_barang = nama_baru
@@ -125,7 +124,7 @@ def  menu_admin():
                 print("barang dengan id barang tersebut tidak ditemukan")
 
         elif pilih == "4":
-            id_barang = input ("masukan ID yang anda ingin dicari :")
+            id_barang = input ("Masukkan ID yang anda ingin dicari :")
             Barang = data.cari_barang(id_barang)
             if barang :
                 print(f"data barang dengan id {id_barang} ditemukan")
@@ -138,7 +137,7 @@ def  menu_admin():
 
         elif pilih == "5":
             data.tampilan_barang()
-            id_barang = input("masukan id barang jika ingin menghapus data barang :")
+            id_barang = input("Masukkan id barang jika ingin menghapus data barang :")
             barang = data.cari_barang(id_barang)
             if barang:
                 data.hapus_barang(id_barang)
@@ -148,12 +147,7 @@ def  menu_admin():
         elif pilih == "6":
             raise SystemExit
         else:
-            print("masukan yang benar")
-
-
-
-
-
+            print("Masukkan yang benar.")
 
 
 
@@ -183,8 +177,6 @@ def register_user():
 
 # Call the function to register a user
     register_user()
-    
-
 
 
 # Fungsi login user
@@ -227,8 +219,6 @@ def admin_login():
         menu_admin()
     else:
         print("Login gagal. Silakan coba lagi.")
-
-    
 
 # Main program
 
