@@ -27,7 +27,9 @@ class LinkedList:
 
     def tampilan_barang(self):
         if not self.head:
+            print("")
             print("Tidak ada data barang yang terdaftar.")
+            print("")
         else:
             current = self.head 
             table = PrettyTable(["ID", "Merk", "Nama", "Harga"])
@@ -44,6 +46,7 @@ class LinkedList:
             barang.nama_barang = nama_barang
             barang.harga = harga
             print("Data barang berhasil diupdate!")
+            print("")
         else:
             print("Barang dengan ID barang tersebut tidak ditemukan.")
 
@@ -61,6 +64,7 @@ class LinkedList:
             self.head = current.next
             current = None
             print("Data barang berhasil dihapus.")
+            print("")
             return
         prev = None
         while current and current.id_barang != id_barang:
@@ -73,34 +77,32 @@ class LinkedList:
         current = None
         print("Data barang berhasil dihapus.")
 
-    
-
-
 data = LinkedList()
 
 def  menu_admin():
     while True:
         print("""   
 
-        Online Workshop             
-        1.TAMBAH BARANG       
-        2.TAMPILAN BARANG     
-        3.UPDATE BARANG      
-        4.CARI BARANG         
-        5.HAPUS BARANG        
-        6.KELUAR 
+        > Online Workshop <
+        
+        1. TAMBAH BARANG       
+        2. TAMPILAN BARANG     
+        3. UPDATE BARANG      
+        4. CARI BARANG         
+        5. HAPUS BARANG        
+        6. KELUAR 
 
         """)
 
-        pilih = input("Masukkan pilihan anda :")
+        pilih = input("Masukkan pilihan anda : ")
 
         if pilih == "1":
-            id_barang   = input("Masukkan id barang    : ")
-            merk_barang = input("Masukkan merek barang : ")
+            id_barang   = input("Masukkan ID barang    : ")
+            merk_barang = input("Masukkan Merk barang  : ")
             nama_barang = input("Masukkan nama barang  : ")
             harga       = input("Masukkan harga barang : ")
             data.tambah_barang(id_barang, merk_barang, nama_barang, harga)
-            print("data barang berhasil ditambahkan!")
+            print("Data barang berhasil ditambahkan!")
 
         elif pilih == "2":
             data.tampilan_barang()
@@ -111,44 +113,43 @@ def  menu_admin():
             id_barang = input("Masukkan ID barang yang anda ingin update :")
             barang = data.cari_barang(id_barang)
             if barang:
-                id_baru     = input("Masukkan ID barang baru    :")
-                merk_baru   = input("Masukkan merek barang baru :")
-                nama_baru   = input("Masukkan nama barang baru  :")
-                harga_baru  = input("Masukkan harga baru        :")
+                id_baru     = input("Masukkan ID barang baru    : ")
+                merk_baru   = input("Masukkan merek barang baru : ")
+                nama_baru   = input("Masukkan nama barang baru  : ")
+                harga_baru  = input("Masukkan harga baru        : ")
                 barang.id_barang   = id_baru
                 barang.merk_barang = merk_baru
                 barang.nama_barang = nama_baru
                 barang.harga       = harga_baru
                 data.update_barang(id_baru, merk_baru, nama_baru, harga_baru)
             else:
-                print("barang dengan id barang tersebut tidak ditemukan")
+                print("Barang dengan id barang tersebut tidak ditemukan.")
 
         elif pilih == "4":
-            id_barang = input ("Masukkan ID yang anda ingin dicari :")
+            id_barang = input ("Masukkan ID yang anda ingin dicari : ")
             Barang = data.cari_barang(id_barang)
             if barang :
-                print(f"data barang dengan id {id_barang} ditemukan")
-                print(f"id barang : {barang.id_barang}")
-                print(f"merk barang : {barang.merk_barang}")
-                print(f"nama barang : {barang.nama_barang}")
-                print(f"harga : {barang.harga}")
+                print(f"Data barang dengan id {id_barang} ditemukan")
+                print(f"ID barang   : {barang.id_barang}")
+                print(f"Merk barang : {barang.merk_barang}")
+                print(f"Nama barang : {barang.nama_barang}")
+                print(f"Harga : {barang.harga}")
             else:
-                print(f"data barang dengan id barang {id_barang} tidak ditemukan.")
+                print(f"Data barang dengan ID barang {id_barang} tidak ditemukan.")
 
         elif pilih == "5":
             data.tampilan_barang()
-            id_barang = input("Masukkan id barang jika ingin menghapus data barang :")
+            id_barang = input("Masukkan ID barang jika ingin menghapus data barang : ")
             barang = data.cari_barang(id_barang)
             if barang:
                 data.hapus_barang(id_barang)
             else:
-                print(f"data barang dengan id barang {id_barang} tidak ditemukan")
+                print(f"Data barang dengan id barang {id_barang} tidak ditemukan")
 
         elif pilih == "6":
             raise SystemExit
         else:
-            print("Masukkan yang benar.")
-
+            print("Masukkan dengan benar.")
 
 
 # Koneksi ke database
@@ -161,8 +162,8 @@ database="sql12609714"
 
 def register_user():
     # Get user input
-    username = input("Enter username: ")
-    password = input("Enter password: ")
+    username = input("Enter username : ")
+    password = input("Enter password : ")
 
     # Insert user data into database
     mycursor = mydb.cursor()
@@ -181,8 +182,8 @@ def register_user():
 
 # Fungsi login user
 def user_login():
-    username = input("Masukkan username: ")
-    password = pwinput.pwinput("Masukkan password: ")
+    username = input("Masukkan username : ")
+    password = pwinput.pwinput("Masukkan password : ")
 
     # Query untuk memeriksa keberadaan username dan password di tabel user
     query = "SELECT * FROM user WHERE username = %s AND password = %s"
@@ -195,9 +196,9 @@ def user_login():
 
     # Jika ditemukan user dengan username dan password yang sesuai
     if user:
-        print("Login berhasil. Selamat datang, {}!".format(user[1]))
+        print("Log in berhasil. Selamat datang, {}!".format(user[1]))
     else:
-        print("Login gagal. Silakan coba lagi.")
+        print("Log in gagal. Silahkan coba lagi.")
 
 # Fungsi login admin
 def admin_login():
@@ -215,20 +216,20 @@ def admin_login():
 
     # Jika ditemukan admin dengan username dan password yang sesuai
     if admin:
-        print("Login berhasil. Selamat datang, {}!".format(admin[1]))
+        print("Log in berhasil. Selamat datang, {}!".format(admin[1]))
         menu_admin()
     else:
-        print("Login gagal. Silakan coba lagi.")
+        print("Log in gagal. Silahkan coba lagi.")
 
 # Main program
 
 def menu_login_user():
     while True:
-        print("Selamat datang di program login.")
+        print("Selamat datang di program log in.")
         print("Pilih opsi:")
-        print("1. registrasi user")
-        print("2. Login user")
-        print("3. Login admin")
+        print("1. Registrasi user baru")
+        print("2. Log in user")
+        print("3. Log in admin")
 
         choice = input("Masukkan pilihan: ")
 
@@ -239,5 +240,5 @@ def menu_login_user():
         elif choice == "3":
             admin_login()
         else:
-            print("Pilihan tidak valid. Silakan coba lagi.")
+            print("Pilihan tidak valid. Silahkan coba lagi.")
 menu_login_user()
