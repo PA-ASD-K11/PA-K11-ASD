@@ -3,14 +3,14 @@ import pwinput
 import mysql.connector
 
 class Barang:
-    def _init_(self, id_barang, nama_barang, harga):
+    def __init__(self, id_barang, nama_barang, harga):
         self.id_barang = id_barang
         self.nama_barang = nama_barang
         self.harga = harga
         self.next = None
 
 class LinkedList:
-    def _init_(self):
+    def __init__(self):
         self.head = None
         self.saldo = 20000000
 
@@ -77,6 +77,45 @@ class LinkedList:
         current = None
         print("Data barang berhasil dihapus!")
 
+    def shell_sort(self):
+        s = self.get_length()
+        gap = s // 2
+        while gap > 0:
+            for w in range(gap, s):
+                temp_node = self.get_node_at_index(w)
+                temp_nama = temp_node.nama_barang
+                temp_harga = temp_node.harga
+
+                p = w
+                while p >= gap and self.get_node_at_index(p - gap).nama_barang > temp_nama:
+                    node_p_gap = self.get_node_at_index(p - gap)
+                    self.get_node_at_index(p).nama_barang = node_p_gap.nama_barang
+                    self.get_node_at_index(p).harga = node_p_gap.harga
+                    p -= gap
+                self.get_node_at_index(p).nama_barang = temp_nama
+                self.get_node_at_index(p).harga = temp_harga
+            gap //= 2
+
+    def get_length(self):
+        current_node = self.head
+        count = 0
+        while current_node:
+            count += 1
+            current_node = current_node.next
+        return count
+
+
+    def get_node_at_index(self, index):
+        current_node = self.head
+        count = 0
+        while current_node:
+            if count == index:
+                return current_node
+            count += 1
+            current_node = current_node.next
+        return None
+
+
     def membeli(self):
         if not self.head:
             print("tidak ada menu yang tersedia")
@@ -132,11 +171,15 @@ data = LinkedList()
 def menu_user():
     while True:
         print("""   
-
-        Work shop online               
-        1. Membeli Barang      
+       ==================
+        Work shop online 
+       ==================               
+        1. Membeli Barang
+       ------------------       
         2. Cek saldo
-        3. Keluar  
+       ------------------
+        3. Keluar
+       ------------------  
 
         """)
 
@@ -157,15 +200,24 @@ def menu_user():
 def  menu_admin():
     while True:
         print("""
+        =====================
+           Work shop online  
+        =====================            
+        1.TAMBAH BARANG 
+        ---------------------      
+        2.TAMPILAN BARANG
+        ---------------------     
+        3.UPDATE BARANG
+        ---------------------      
+        4.CARI BARANG
+        ---------------------         
+        5.HAPUS BARANG
+        ---------------------
+        6.Shoting
+        ---------------------        
+        7.KELUAR
+        --------------------- 
 
-        Work shop online               
-        1.TAMBAH BARANG       
-        2.TAMPILAN BARANG     
-        3.UPDATE BARANG      
-        4.CARI BARANG         
-        5.HAPUS BARANG        
-        6.KELUAR 
-        7. KELUAR DARI ADMIN
 
     
         """)
@@ -173,9 +225,9 @@ def  menu_admin():
         pilih = input("Masukkan pilihan anda : ")
 
         if pilih == "1":
-            id_barang   = input("Masukkan id barang    : ")
+            id_barang   = int(input("Masukkan id barang    : "))
             nama_barang = input("Masukkan nama barang  : ")
-            harga       = input("Masukkan harga barang : ")
+            harga       = int(input("Masukkan harga barang : "))
             data.tambah_barang(id_barang,  nama_barang, harga)
             print("data barang berhasil ditambahkan!")
 
@@ -213,17 +265,19 @@ def  menu_admin():
 
         elif pilih == "5":
             data.tampilan_barang()
-            id_barang =int(input("Masukkan id barang jika ingin menghapus data barang : "))
+            id_barang =int(input("masukan nomor yang ingin di hapus : "))
             barang = data.cari_barang(id_barang)
             if barang:
                 data.hapus_barang(id_barang)
             else:
                 print(f"data barang dengan id barang {id_barang} tidak ditemukan")
-
+            
         elif pilih == "6":
+            data.shell_sort()
+            data.tampilan_barang()
+
+        elif pilih == "7":
             raise SystemExit
-        elif pilih =="7":
-            break
         else:
             print("Masukkan yang benar")
 
@@ -316,12 +370,22 @@ def menu_login():
     data.tambah_barang(333 , "kunci italia", 20000)
     data.tambah_barang(222 , "kunci puan", 100000)
     data.tambah_barang(444 , "kunci joko", 400000)
+
     while True:
-        print("Selamat datang di program login.")
-        print("Pilih opsi: ")
-        print("1. registrasi user")
-        print("2. Login user")
-        print("3. Login admin")
+        print("""
+        ================================
+        Selamat datang di program login
+        ================================
+        Pilih nomor:
+        ------------ 
+        1. registrasi user
+        ------------------
+        2. Login user
+        ------------------
+        3. Login admin
+        ------------------
+        
+        """)
 
         choice = input("Masukkan pilihan: ")
 
