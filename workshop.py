@@ -2,16 +2,15 @@ from prettytable import PrettyTable
 import pwinput
 import mysql.connector
 
-
 class Barang:
-    def __init__(self, id_barang, nama_barang, harga):
+    def _init_(self, id_barang, nama_barang, harga):
         self.id_barang = id_barang
         self.nama_barang = nama_barang
         self.harga = harga
         self.next = None
 
 class LinkedList:
-    def __init__(self):
+    def _init_(self):
         self.head = None
         self.saldo = 20000000
 
@@ -90,7 +89,7 @@ class LinkedList:
         try:
             pilihan = int(pilihan)
         except ValueError:
-            print("masukan tidak ada")
+            print("Masukkan tidak ada")
             return
         
         beli=self.head
@@ -100,11 +99,11 @@ class LinkedList:
                 if self.saldo < int(beli.harga):
                     print("saldo anda tidak cukup")
                     return
-                hasil = input(f"masukan berapa {beli.nama_barang} yang akan di beli: ")
+                hasil = input(f"Masukkan berapa {beli.nama_barang} yang akan di beli: ")
                 try:
                     hasil = int(hasil)
                 except ValueError:
-                    print("masukan tidak ada")
+                    print("Masukkan tidak ada")
                     return
                 if hasil <=0:
                     print("jumlah tidak ada")
@@ -126,59 +125,57 @@ class LinkedList:
             beli = beli.next
             i += 1
 
-        print("Nomor menu yang dimasukan tidak valid")
-
-
-    
-
+        print("Nomor menu yang dimasukkan tidak valid.")
 
 data = LinkedList()
 
-def  menu_user():
+def menu_user():
     while True:
         print("""   
-       
-              work shop online               
-         1.Membeli Barang      
-         2.cek saldo
-         3.Keluar  
 
-       
+        Work shop online               
+        1. Membeli Barang      
+        2. Cek saldo
+        3. Keluar  
+
         """)
 
-        pilih1 = input("masukan pilihan anda :")
+        pilih1 = input("Masukkan pilihan anda : ")
 
         if pilih1 == "1":          
             data.membeli()
 
+        elif pilih1 == "2":
+            print("Saldo Anda saat ini adalah: ", data.saldo)
 
+        elif pilih1 == "3":
+            raise SystemExit
 
-        if pilih1 == "7":
-            break
-
+        else:
+            print("Pilihan tidak valid. Silakan masukkan pilihan yang benar.")
 
 def  menu_admin():
     while True:
-        print("""   
-       
-              work shop online               
-         1.TAMBAH BARANG       
-         2.TAMPILAN BARANG     
-         3.UPDATE BARANG      
-         4.CARI BARANG         
-         5.HAPUS BARANG        
-         6.KELUAR 
-         7. KELUAR DARI ADMIN
+        print("""
 
-       
+        Work shop online               
+        1.TAMBAH BARANG       
+        2.TAMPILAN BARANG     
+        3.UPDATE BARANG      
+        4.CARI BARANG         
+        5.HAPUS BARANG        
+        6.KELUAR 
+        7. KELUAR DARI ADMIN
+
+    
         """)
 
-        pilih = input("masukan pilihan anda :")
+        pilih = input("Masukkan pilihan anda : ")
 
         if pilih == "1":
-            id_barang   = input("masukan id barang    : ")
-            nama_barang = input("masukan nama barang  : ")
-            harga       = input("masukan harga barang : ")
+            id_barang   = input("Masukkan id barang    : ")
+            nama_barang = input("Masukkan nama barang  : ")
+            harga       = input("Masukkan harga barang : ")
             data.tambah_barang(id_barang,  nama_barang, harga)
             print("data barang berhasil ditambahkan!")
 
@@ -188,12 +185,12 @@ def  menu_admin():
 
         elif pilih == "3":
             data.tampilan_barang()
-            id_barang = input("masukan ID barang yang anda ingin update :")
+            id_barang = input("Masukkan ID barang yang anda ingin update : ")
             barang = data.cari_barang(id_barang)
             if barang:
-                id_baru     = input("masukan ID barang baru    :")
-                nama_baru   = input("masukan nama barang baru  :")
-                harga_baru  = input("masukan harga baru        :")
+                id_baru     = input("Masukkan ID barang baru    : ")
+                nama_baru   = input("Masukkan nama barang baru  : ")
+                harga_baru  = input("Masukkan harga baru        : ")
                 barang.id_barang   = id_baru
                 barang.nama_barang = nama_baru
                 barang.harga       = harga_baru
@@ -216,7 +213,7 @@ def  menu_admin():
 
         elif pilih == "5":
             data.tampilan_barang()
-            id_barang =int(input("masukan id barang jika ingin menghapus data barang :"))
+            id_barang =int(input("Masukkan id barang jika ingin menghapus data barang : "))
             barang = data.cari_barang(id_barang)
             if barang:
                 data.hapus_barang(id_barang)
@@ -228,14 +225,7 @@ def  menu_admin():
         elif pilih =="7":
             break
         else:
-            print("masukan yang benar")
-
-
-
-
-
-
-
+            print("Masukkan yang benar")
 
 # Koneksi ke database
 def koneksi():
@@ -328,7 +318,7 @@ def menu_login():
     data.tambah_barang(444 , "kunci joko", 400000)
     while True:
         print("Selamat datang di program login.")
-        print("Pilih opsi:")
+        print("Pilih opsi: ")
         print("1. registrasi user")
         print("2. Login user")
         print("3. Login admin")
@@ -344,4 +334,3 @@ def menu_login():
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
 menu_login()
-
