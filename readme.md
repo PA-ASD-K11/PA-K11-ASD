@@ -14,9 +14,9 @@ Program ini merupakan program toko workshop online sederhana yang memungkinkan p
 
 ## Mulai
 
-Instal prasyarat yang tercantum di atas.
-Unduh file kode program.
-Jalankan program menggunakan Python.
+1. Instal prasyarat yang tercantum di atas.
+2. Unduh file kode program.
+3. Jalankan program menggunakan Python.
 
 ## Cara Penggunaan
 1. Saat program dimulai, pengguna dapat memilih untuk masuk sebagai pelanggan atau administrator.
