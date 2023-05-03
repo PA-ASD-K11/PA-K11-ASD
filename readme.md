@@ -7,10 +7,10 @@ Syahfi Rizqi (2209116093)
 Program ini merupakan program toko workshop online sederhana yang memungkinkan pengguna untuk membeli barang dan mengecek saldonya, sedangkan administrator dapat menambah, melihat, memperbarui, mencari, dan menghapus barang.
 
 ## Prasyarat
-Python 3.x
-prettytable
-pwinput
-mysql-connector-python
+* Python 3.x
+* prettytable
+* pwinput
+* mysql-connector-python
 
 ## Mulai
 
@@ -22,7 +22,7 @@ Jalankan program menggunakan Python.
 1. Saat program dimulai, pengguna dapat memilih untuk masuk sebagai pelanggan atau administrator.
 2. Pelanggan dapat membeli item dan memeriksa saldo mereka.
 3. Administrator dapat menambah, melihat, memperbarui, mencari, dan menghapus item.
-4. Program menyimpan data dalam daftar tertaut dan database SQL.
+4. Program menyimpan data dalam Linked List dan database SQL.
 5. Program ini juga membuat file invoice.txt untuk setiap pembelian.
 
 ## Class dan Function
